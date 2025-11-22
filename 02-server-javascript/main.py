@@ -1,13 +1,16 @@
-from fastapi import FastAPI, Request
+import json
+import logging
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
-from typing import Dict
+from typing import Any, Dict
+
+logging.getLogger().setLevel(logging.INFO)
 
 app = FastAPI()
 
-# Fingerprint submission schema
 class FingerprintData(BaseModel):
-    data: Dict[str, str]
+    data: Dict[str, Any]
 
 @app.get("/", response_class=HTMLResponse)
 async def index():
@@ -49,7 +52,5 @@ async def index():
 
 @app.post("/submit")
 async def submit_fingerprint(fingerprint: FingerprintData):
-    print("Received fingerprint:")
-    for key, value in fingerprint.data.items():
-        print(f"{key}: {value}")
+    logging.info(f"Fingerprint:\n{json.dumps(fingerprint.data, indent=2)}")
     return JSONResponse(content={"status": "ok"})
