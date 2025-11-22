@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Browser Fingerprint</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f5f5f5; }
+    pre { background: white; padding: 1rem; border-radius: 5px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Browser Fingerprint</h1>
+  <pre id="fingerprint"></pre>
+
+  <script>
+    const getFingerprint = () => {
+      const plugins = Array.from(navigator.plugins).map(p => p.name);
+
+      return {
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        platform: navigator.platform,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        screen: {
+          width: screen.width,
+          height: screen.height,
+          colorDepth: screen.colorDepth
+        },
+        plugins
+      };
+    };
+
+    const fp = getFingerprint();
+    document.getElementById("fingerprint").textContent = JSON.stringify(fp, null, 2);
+  </script>
+</body>
+</html>
