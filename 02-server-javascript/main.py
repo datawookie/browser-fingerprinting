@@ -9,8 +9,10 @@ logging.getLogger().setLevel(logging.INFO)
 
 app = FastAPI()
 
+
 class FingerprintData(BaseModel):
     data: Dict[str, Any]
+
 
 @app.get("/", response_class=HTMLResponse)
 async def index():
@@ -49,6 +51,7 @@ async def index():
     </body>
     </html>
     """
+
 
 @app.post("/submit")
 async def submit_fingerprint(fingerprint: FingerprintData):
