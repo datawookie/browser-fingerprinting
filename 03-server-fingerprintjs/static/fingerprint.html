@@ -2,25 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>FingerprintJS + FastAPI Demo</title>
 </head>
 <body>
-  <h1>Using FingerprintJS to fingerprint your browser...</h1>
+  <h1>Browser Fingerprint with FingerprintJS</h1>
   <pre id="output"></pre>
 
   <script>
   const fpPromise = import('https://openfpcdn.io/fingerprintjs/v5')
     .then(FingerprintJS => FingerprintJS.load())
-
-  // Get the visitor ID..
-  // fpPromise
-  //   .then(fp => fp.get())
-  //   .then(result => {
-  //     // This is the visitor identifier:
-  //     const visitorId = result.visitorId
-  //     console.log(visitorId)
-  //     console.log(result)
-  //   })
 
     fpPromise
       .then(fp => fp.get())

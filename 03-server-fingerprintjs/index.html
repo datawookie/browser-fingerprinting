@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Load the open source version. -->
+    <script src="https://openfpcdn.io/fingerprintjs/v3/iife.min.js"></script>
+  </head>
+  <body>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        FingerprintJS.load().then((fp) => {
+          return fp.get();
+        }).then((result) => {
+          console.log(result.visitorId);
+        });
+      });
+    </script>
+  </body>
+</html>

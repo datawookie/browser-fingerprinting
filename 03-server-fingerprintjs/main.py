@@ -30,4 +30,5 @@ async def submit_fingerprint(data: FingerprintData) -> JSONResponse:
     logging.info("Visitor ID: %s", data.visitorId)
     for name, component in data.components.items():
         logging.info("Component %s: %s", name, component.get("value"))
+
     return JSONResponse(content={"status": "ok"})
