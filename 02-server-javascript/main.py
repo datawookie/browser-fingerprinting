@@ -1,9 +1,10 @@
 import json
 import logging
+from typing import Any
+
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
-from typing import Any, Dict
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -11,7 +12,7 @@ app = FastAPI()
 
 
 class FingerprintData(BaseModel):
-    data: Dict[str, Any]
+    data: dict[str, Any]
 
 
 @app.get("/", response_class=HTMLResponse)
